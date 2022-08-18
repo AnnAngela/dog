@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Update
-      run: apt update && apt full-upgrade -y -o "Dpkg::Options::=--force-confold" && apt autoremove -y --purge
+      run: sudo apt update && sudo apt full-upgrade -y -o "Dpkg::Options::=--force-confold" && sudo apt autoremove -y --purge
     - name: Build
       run: cargo build --verbose --release
     - name: Upload Build Artifact
