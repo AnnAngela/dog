@@ -9,13 +9,15 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v3
+    - name: Update
+      run: apt update && apt full-upgrade -y -o "Dpkg::Options::=--force-confold" && apt autoremove -y --purge
     - name: Build
       run: cargo build --verbose --release
-    - name: Upload a Build Artifact
+    - name: Upload Build Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
        name: bin
